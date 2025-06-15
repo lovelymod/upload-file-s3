@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import multer from "multer";
 import multerS3 from "multer-s3";
-import AWS from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 
 dotenv.config();
 const app = express();
@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "*" }));
 
-const s3Client = new AWS.S3({
+const s3Client = new S3Client({
   region: process.env.AWS_REGION || "",
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY || "",
